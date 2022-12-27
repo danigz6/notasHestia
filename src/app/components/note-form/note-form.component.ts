@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {notEmptyValidator} from "../../validators/not-empty.validator";
-import {Note} from "../show-diary-notes/show-diary-notes.component";
+import {Note} from "../notes/notes.component";
 
 @Component({
   selector: 'app-add-note',

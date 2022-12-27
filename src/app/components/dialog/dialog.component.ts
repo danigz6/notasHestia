@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Note} from "../show-diary-notes/show-diary-notes.component";
-import {ShowDiaryNotesComponent} from "../show-diary-notes/show-diary-notes.component";
+import {Note} from "../notes/notes.component";
+import {NotesComponent} from "../notes/notes.component";
 
 @Component({
   selector: 'app-dialog',

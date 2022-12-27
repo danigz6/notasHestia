@@ -14,10 +14,10 @@ export interface Note {
 
 @Component({
   selector: 'app-show-diary-notes',
-  templateUrl: './show-diary-notes.component.html',
+  templateUrl: './notes.component.html',
   styleUrls: ['../../app.component.scss']
 })
-export class ShowDiaryNotesComponent implements OnInit{
+export class NotesComponent implements OnInit{
   notes: Note[] = [];
 
   constructor(public dialog: MatDialog) {
