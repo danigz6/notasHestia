@@ -1,0 +1,21 @@
+
+  <form id="noteForm" #form [formGroup]="formGroup">
+
+    <div class="form-inputs">
+      <mat-form-field appearance="fill">
+        <mat-label>Título</mat-label>
+        <input matInput #titleNote formControlName="titleControl">
+        <mat-error *ngIf="formGroup.get('titleControl')?.invalid ?? false">{{msgError}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput #contentNote formControlName="contentControl"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div id="buttons">
+      <button mat-raised-button color="primary" (click)="onSaveClick()">Guardar</button>
+      <button mat-raised-button color="warn" (click)="form.reset()">Limpiar campos</button>
+    </div>
+  </form>
+

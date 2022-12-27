@@ -1,0 +1,82 @@
+:host {
+
+
+  .card {
+    width: 500px;
+    height: 500px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  }
+
+  .cardHeader {
+    display:flex;
+  }
+
+  h3 {
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .title {
+    flex-grow: 1;
+    margin-left: 10px;
+    cursor: unset;
+  }
+
+  ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+    height: calc(500px - 86px - 10px);
+  }
+
+  p {
+    margin:10px;
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #noteForm {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-between;
+    overflow: auto;
+    height: 100%;
+  }
+
+  .form-container {
+    height: calc(500px - 86px);
+  }
+
+  .form-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .add-note {
+    background-color: red;
+    height:100%;
+  }
+
+  .btn-delete {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .description {
+    word-wrap: break-word;
+  }
+}
