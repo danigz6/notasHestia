@@ -1,55 +1,74 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, ValidationErrors, ValidatorFn} from "@angular/forms";
-import {MatDialog} from "@angular/material/dialog";
-import {DialogComponent} from "../dialog/dialog.component";
-import {notEmptyValidator} from "../../validators/not-empty.validator";
-import {NoteFormComponent} from "../note-form/note-form.component";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {DialogUpdateComponent} from "../dialog-update/dialog-update.component";
+import {DialogAddComponent} from "../dialog-add/dialog-add.component";
+import {Note} from "../../interfaces/note";
 
-
-export interface Note {
-  id: number;
-  title: string;
-  content: string | null;
-}
 
 @Component({
-  selector: 'app-show-diary-notes',
+  selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['../../app.component.scss']
+  styleUrls: ['./notes.component.scss']
 })
-export class NotesComponent implements OnInit{
+export class NotesComponent implements OnInit {
   notes: Note[] = [];
+  date: Date = new Date();
+  dayOption: boolean = true;
 
   constructor(public dialog: MatDialog) {
 
   }
 
+
   ngOnInit(): void {
-    this.notes = JSON.parse(localStorage.getItem('notes') ?? '[]') as Note[];
+    const arr = JSON.parse(localStorage.getItem('notes') ?? '[]') as any[];
+    this.notes = arr.map(({date, ...rest}) => {
+      return {
+        date: new Date(date), ...rest
+      } as Note
+    });
   }
 
   addNote(note: Note): void {
     this.notes.push(note);
-    localStorage.setItem('notes', JSON.stringify(this.notes));
-
-    this.resetForm();
+    this.updateLocalStorage();
   }
 
   deleteNote(index: number): void {
     this.notes.splice(index, 1);
+    this.updateLocalStorage();
+  }
+
+  updateLocalStorage(): void {
     localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
-  resetForm() {
+  openDialogAdd(): void {
+    const dialogRef = this.dialog.open(DialogAddComponent);
 
+    dialogRef.afterClosed().subscribe( {
+      next: value => {
+        if (value === undefined) {
+          return;
+        }
+        this.addNote(value);
+      }
+    });
   }
 
   openDialog(note: Note): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef: MatDialogRef<DialogUpdateComponent, Note> = this.dialog.open(DialogUpdateComponent, {
       data: note
     });
     dialogRef.afterClosed().subscribe({
-      next: value => console.log(value)
+      next: value => {
+        if (value === undefined) {
+          return;
+        }
+        const indexNote = this.notes.indexOf(note);
+        this.notes[indexNote] = value;
+        this.updateLocalStorage();
+      }
     });
   }
 }

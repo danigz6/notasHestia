@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-  font-weight: bold;
   box-sizing: border-box;
 }
 
@@ -9,5 +8,6 @@ body {
   font-family: Arial, "Helvetica Neue", sans-serif;
   height: 100vh;
   display: grid;
+  margin: 0;
   place-content: center;
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,15 +13,25 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
-import { DialogComponent } from './components/dialog/dialog.component';
+import { DialogUpdateComponent } from './components/dialog-update/dialog-update.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { DialogAddComponent } from './components/dialog-add/dialog-add.component';
+import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
+
+import localeEs from '@angular/common/locales/es';
+import {registerLocaleData} from "@angular/common";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatSelectModule} from "@angular/material/select";
+import {MatMenuModule} from "@angular/material/menu";
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [
     AppComponent,
     NotesComponent,
     NoteFormComponent,
-    DialogComponent
+    DialogUpdateComponent,
+    DialogAddComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +46,13 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatInputModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

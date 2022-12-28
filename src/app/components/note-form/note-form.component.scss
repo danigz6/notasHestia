@@ -1,0 +1,19 @@
+#noteForm {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-between;
+  overflow: auto;
+  height: 100%;
+}
+
+.form-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+#buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

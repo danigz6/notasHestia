@@ -1,0 +1,47 @@
+.card {
+  width: 500px;
+  height: 500px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.mat-expansion-panel-header {
+  font-size: medium;
+}
+
+.cardHeader {
+  display:flex;
+}
+
+.title {
+  flex-grow: 1;
+  margin-left: 10px;
+  cursor: unset;
+  margin: 10px;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  height: calc(500px - 48px);
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.description {
+  word-wrap: break-word;
+}
+
+p {
+  margin:10px;
+  color: gray;
+  font-size: medium;
+}

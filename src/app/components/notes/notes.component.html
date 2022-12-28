@@ -1,19 +1,39 @@
+
 <div class="card">
   <div class="cardHeader">
     <h3 class="title">Notas</h3>
+
+    <button mat-icon-button (click)="openDialogAdd()">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>filter_list</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="dayOption=true">
+        <mat-icon>today</mat-icon>
+        <span>Notas de hoy</span>
+      </button>
+      <button mat-menu-item (click)="dayOption=false">
+        <mat-icon>calendar_month</mat-icon>
+        <span>Todas las notas</span>
+      </button>
+    </mat-menu>
   </div>
 
-  <mat-tab-group animationDuration="0ms" dynamicHeight>
-    <mat-tab label="Listar" class="listar">
-      <ul *ngIf="notes.length > 0">
+    <div *ngIf="dayOption">
+      <p *ngIf="notes.length === 0">No tienes notas pendientes</p>
+      <ul>
         <li *ngFor="let note of notes; let i = index">
-          <mat-accordion>
+          <mat-accordion *ngIf="date.toDateString() === note.date.toDateString()">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   {{note.title}}
                 </mat-panel-title>
-                <mat-panel-description class="btn-delete">
+                <mat-panel-description class="btn">
+                  <p>{{note.date | date}}</p>
                   <button mat-icon-button (click)="openDialog(note)">
                     <mat-icon>edit_note</mat-icon>
                   </button>
@@ -27,14 +47,33 @@
           </mat-accordion>
         </li>
       </ul>
-      <p *ngIf="notes.length == 0">No tienes notas pendientes</p>
-    </mat-tab>
+    </div>
 
-    <mat-tab label="Añadir nota">
-      <div class="form-container">
-        <app-add-note (onSave)="addNote($event)"></app-add-note>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+  <div *ngIf="!dayOption">
+    <p *ngIf="notes.length == 0">No tienes notas pendientes</p>
+    <ul>
+      <li *ngFor="let note of notes; let i = index">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{note.title}}
+              </mat-panel-title>
+              <mat-panel-description class="btn">
+                <p>{{note.date | date}}</p>
+                <button mat-icon-button (click)="openDialog(note)">
+                  <mat-icon>edit_note</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteNote(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p class="description">{{note.content}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </li>
+    </ul>
+  </div>
 </div>
 

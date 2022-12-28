@@ -3,15 +3,22 @@
 
     <div class="form-inputs">
       <mat-form-field appearance="fill">
-        <mat-label>Título</mat-label>
-        <input matInput #titleNote formControlName="titleControl">
-        <mat-error *ngIf="formGroup.get('titleControl')?.invalid ?? false">{{msgError}}</mat-error>
+        <mat-label>Título &#42;</mat-label>
+        <input matInput formControlName="titleControl">
+        <mat-error *ngIf="formGroup.get('titleControl')?.invalid ?? false">Introduzca un título</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Descripción</mat-label>
-        <textarea matInput #contentNote formControlName="contentControl"></textarea>
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dateControl">
+        <mat-error *ngIf="formGroup.get('dateControl')?.invalid ?? false">Formato (dd/mm/yyyy)</mat-error>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="contentControl"></textarea>
+    </mat-form-field>
 
     <div id="buttons">
       <button mat-raised-button color="primary" (click)="onSaveClick()">Guardar</button>
