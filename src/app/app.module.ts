@@ -17,12 +17,13 @@ import { DialogUpdateComponent } from './components/dialog-update/dialog-update.
 import {MatDialogModule} from "@angular/material/dialog";
 import { DialogAddComponent } from './components/dialog-add/dialog-add.component';
 import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
-
-import localeEs from '@angular/common/locales/es';
-import {registerLocaleData} from "@angular/common";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatSelectModule} from "@angular/material/select";
 import {MatMenuModule} from "@angular/material/menu";
+
+import localeEs from '@angular/common/locales/es';
+import {registerLocaleData} from "@angular/common";
+import { NoteFilterPipe } from './pipes/note-filter.pipe';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -31,7 +32,8 @@ registerLocaleData(localeEs, 'es');
     NotesComponent,
     NoteFormComponent,
     DialogUpdateComponent,
-    DialogAddComponent
+    DialogAddComponent,
+    NoteFilterPipe,
   ],
   imports: [
     BrowserModule,

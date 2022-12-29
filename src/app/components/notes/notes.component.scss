@@ -2,6 +2,7 @@
   width: 500px;
   height: 500px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 0 0 10px 10px;
 }
 
 .mat-expansion-panel-header {
@@ -44,4 +45,19 @@ p {
   margin:10px;
   color: gray;
   font-size: medium;
+}
+
+.search {
+  width:100%;
+  padding:10px;
+  box-sizing:border-box;
+  background:none;
+  outline:none;
+  border:0;
+  border-bottom:2px solid;
+  margin: 10px;
+}
+
+.search:focus {
+  border-bottom:2px solid #78788c
 }

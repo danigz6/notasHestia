@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {notEmptyValidator} from "../../validators/not-empty.validator";
 import {Note} from "../../interfaces/note";
+import {dateValidator} from "../../validators/date.validator";
 
 @Component({
   selector: 'app-note-form',
@@ -13,13 +14,11 @@ export class NoteFormComponent implements OnInit{
   formGroup = new FormGroup({
     titleControl: new FormControl('',[notEmptyValidator()]),
     contentControl: new FormControl<string | null>(null),
-    dateControl: new FormControl<Date | null>(null)
+    dateControl: new FormControl<Date>(this.note?.date ?? new Date(), [dateValidator()])
   });
   @Output() onSave: EventEmitter<Note> = new EventEmitter<Note>();
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit(): void {
     if (this.note === undefined) {
@@ -36,7 +35,7 @@ export class NoteFormComponent implements OnInit{
     ) + 1;
   }
 
-  onSaveClick() {
+  onSaveClick(): void {
     if (this.formGroup.invalid) {
       return;
     }

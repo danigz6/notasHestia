@@ -14,7 +14,7 @@ export class DialogUpdateComponent {
     @Inject(MAT_DIALOG_DATA) public data: Note,
     ) {}
 
-  onUpdateNote(updatedNote: Note) {
+  onUpdateNote(updatedNote: Note): void {
     this.dialogRef.close(updatedNote);
   }
 }

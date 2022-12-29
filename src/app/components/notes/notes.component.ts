@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {DialogUpdateComponent} from "../dialog-update/dialog-update.component";
 import {DialogAddComponent} from "../dialog-add/dialog-add.component";
@@ -12,13 +12,12 @@ import {Note} from "../../interfaces/note";
 })
 export class NotesComponent implements OnInit {
   notes: Note[] = [];
-  date: Date = new Date();
-  dayOption: boolean = true;
+  titleFilter: string = '';
+  showDailyNotes: boolean = true;
+  searchOption: boolean = true;
 
-  constructor(public dialog: MatDialog) {
 
-  }
-
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     const arr = JSON.parse(localStorage.getItem('notes') ?? '[]') as any[];
@@ -29,9 +28,16 @@ export class NotesComponent implements OnInit {
     });
   }
 
+  @HostListener('document:dblclick')
+  onDocumentClick(): void {
+    this.searchOption = true;
+  }
+
   addNote(note: Note): void {
-    this.notes.push(note);
-    this.updateLocalStorage();
+    if (note.date != null) {
+      this.notes.push(note);
+      this.updateLocalStorage();
+    }
   }
 
   deleteNote(index: number): void {
@@ -41,6 +47,15 @@ export class NotesComponent implements OnInit {
 
   updateLocalStorage(): void {
     localStorage.setItem('notes', JSON.stringify(this.notes));
+    this.notes = [...this.notes];
+  }
+
+  chooseCompareDates(compare: boolean): void {
+    this.showDailyNotes = compare;
+  }
+
+  onTitleNote(title: string): void {
+    this.titleFilter = title;
   }
 
   openDialogAdd(): void {

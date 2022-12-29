@@ -8,9 +8,9 @@
         <mat-error *ngIf="formGroup.get('titleControl')?.invalid ?? false">Introduzca un título</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Fecha</mat-label>
+        <mat-label>Fecha &#42;</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="dateControl">
-        <mat-error *ngIf="formGroup.get('dateControl')?.invalid ?? false">Formato (dd/mm/yyyy)</mat-error>
+        <mat-error *ngIf="formGroup.get('dateControl')?.invalid ?? false">Formato (mm/dd/yyyy)</mat-error>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>

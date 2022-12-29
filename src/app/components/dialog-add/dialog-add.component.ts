@@ -10,7 +10,7 @@ import {Note} from "../../interfaces/note";
 export class DialogAddComponent {
   constructor(public dialogRef: MatDialogRef<DialogAddComponent>) {}
 
-  onAddNote(note:Note) {
+  onAddNote(note:Note): void {
     this.dialogRef.close(note);
   }
 }
