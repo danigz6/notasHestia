@@ -1,5 +1,5 @@
 
-<h1 mat-dialog-title>Actualizar nota</h1>
+<h1 mat-dialog-title>{{popupTitle}}</h1>
 <div mat-dialog-content>
 <app-note-form [note]="data" (onSave)="onUpdateNote($event)"></app-note-form>
 </div>
