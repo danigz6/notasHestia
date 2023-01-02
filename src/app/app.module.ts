@@ -13,9 +13,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
-import { DialogUpdateComponent } from './components/dialog-update/dialog-update.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import { DialogAddComponent } from './components/dialog-add/dialog-add.component';
 import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatSelectModule} from "@angular/material/select";
@@ -31,8 +30,7 @@ registerLocaleData(localeEs, 'es');
     AppComponent,
     NotesComponent,
     NoteFormComponent,
-    DialogUpdateComponent,
-    DialogAddComponent,
+    DialogComponent,
     NoteFilterPipe,
   ],
   imports: [

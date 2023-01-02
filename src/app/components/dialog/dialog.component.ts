@@ -4,13 +4,13 @@ import {Note} from "../../interfaces/note";
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: './dialog-update.component.html',
-  styleUrls: ['./dialog-update.component.scss']
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss']
 })
-export class DialogUpdateComponent {
+export class DialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<DialogUpdateComponent, Note>,
+    public dialogRef: MatDialogRef<DialogComponent, Note>,
     @Inject(MAT_DIALOG_DATA) public data: Note,
     ) {}
 

@@ -1,7 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {DialogUpdateComponent} from "../dialog-update/dialog-update.component";
-import {DialogAddComponent} from "../dialog-add/dialog-add.component";
+import {DialogComponent} from "../dialog/dialog.component";
 import {Note} from "../../interfaces/note";
 
 
@@ -58,30 +57,24 @@ export class NotesComponent implements OnInit {
     this.titleFilter = title;
   }
 
-  openDialogAdd(): void {
-    const dialogRef = this.dialog.open(DialogAddComponent);
-
-    dialogRef.afterClosed().subscribe( {
-      next: value => {
-        if (value === undefined) {
-          return;
-        }
-        this.addNote(value);
-      }
-    });
-  }
-
-  openDialog(note: Note): void {
-    const dialogRef: MatDialogRef<DialogUpdateComponent, Note> = this.dialog.open(DialogUpdateComponent, {
+  openDialog(note?: Note): void {
+    const dialogRef: MatDialogRef<DialogComponent, Note> = this.dialog.open(DialogComponent, {
       data: note
     });
     dialogRef.afterClosed().subscribe({
-      next: value => {
-        if (value === undefined) {
+      next: updatedNote => {
+        //Case 0: return if form inputs are not validated
+        if (updatedNote === undefined) {
           return;
         }
-        const indexNote = this.notes.indexOf(note);
-        this.notes[indexNote] = value;
+        //Case 1: creating new note
+        if (note === undefined) {
+          this.addNote(updatedNote);
+          return;
+        }
+        //Normal case: editing current note
+        const indexNote = this.notes.indexOf(note!);
+        this.notes[indexNote] = updatedNote;
         this.updateLocalStorage();
       }
     });
